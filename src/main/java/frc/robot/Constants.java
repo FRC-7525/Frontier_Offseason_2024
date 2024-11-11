@@ -13,8 +13,8 @@ public final class Constants {
 
     public static final class Intake {
         public static final double speed = -1;
-        public static final double in = 0.53; 
-        public static final double out = 0;
+        public static final double in = 0.53; //TODO fix value
+        public static final double out = 0; //TODO fix value
     }
 
 }
