@@ -19,4 +19,10 @@ public final class Constants {
         public static final double out = Units.degreesToRotations(180); 
     }
 
+    public static final class AmpBar {
+        public static final int ROTATIONAL_MOTOR_ID = 0; //TODO fix all this
+        public static final int LPIVOT_MOTOR_ID = 0; //TODO fix this
+        public static final int RPIVOT_MOTOR_ID = 0; //TODO fix this
+    }
+
 }
