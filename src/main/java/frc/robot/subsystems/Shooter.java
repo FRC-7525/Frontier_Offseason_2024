@@ -18,7 +18,6 @@ public class Shooter {
     private BangBangController motorController;
     private double speed; 
 
-
     public Shooter() {
         state = ShooterStates.IDLE;
         motorController = new BangBangController();
@@ -37,11 +36,8 @@ public class Shooter {
             rightMotor.set(0); 
         } 
         else if (state == ShooterStates.SHOOTING) {
-
             leftMotor.set(motorController.calculate(leftMotor.getVelocity().getValueAsDouble(), speed));
             rightMotor.set(motorController.calculate(rightMotor.getVelocity().getValueAsDouble(), speed));
-
-
         } 
     }
 }

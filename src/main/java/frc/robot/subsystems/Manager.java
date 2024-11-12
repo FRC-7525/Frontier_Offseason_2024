@@ -13,7 +13,8 @@ public class Manager {
     enum ManagerState{
         IDLE, 
         INTAKING,  
-        SHOOTING
+        SHOOTING,
+        FEEDING
     }
 
     Manager() {

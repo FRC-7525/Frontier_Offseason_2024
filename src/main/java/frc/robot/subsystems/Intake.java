@@ -9,8 +9,8 @@ import frc.robot.Constants;
 
 public class Intake {
     private IntakeStates state;  
-    private CANSparkMax wheels; 
-    private TalonFX intake; 
+    private CANSparkMax intake; 
+    private TalonFX wheels; 
     private PIDController controller;
 
     enum IntakeStates {
@@ -20,11 +20,12 @@ public class Intake {
 
     public Intake() {
         state = IntakeStates.IDLE;
-        wheels = new CANSparkMax(20, MotorType.kBrushless); 
+        intake = new CANSparkMax(20, MotorType.kBrushless); 
         
-        intake = new TalonFX(32);
+        wheels = new TalonFX(32);
         
         controller = new PIDController(0.1, 0, 0); //PID Tune 
+        intake.getEncoder().setPosition(0);
     }
 
     public void setState(IntakeStates state) {
@@ -35,15 +36,14 @@ public class Intake {
         
         switch (state) {
             case IDLE:  
-                intake.set(controller.calculate(intake.getPosition().getValueAsDouble(), Constants.Intake.in));
+                intake.set(controller.calculate(intake.getEncoder().getPosition(), Constants.Intake.in));
                 wheels.set(0); 
                 break; 
            
             case INTAKING:
-                intake.set(controller.calculate(intake.getVelocity().getValueAsDouble(), Constants.Intake.out));
+                intake.set(controller.calculate(intake.getEncoder().getPosition(), Constants.Intake.out));
                 wheels.set(Constants.Intake.speed);
                 break; 
-
         }
     }
  }   
