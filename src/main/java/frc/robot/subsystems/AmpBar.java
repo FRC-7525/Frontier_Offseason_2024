@@ -7,7 +7,7 @@ import frc.robot.Constants;
 
 enum Ampstates {
     OUT,
-    IN
+    IN 
 }  
 
 public class AmpBar {
