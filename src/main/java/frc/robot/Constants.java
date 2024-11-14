@@ -19,10 +19,15 @@ public final class Constants {
         public static final double out = Units.degreesToRotations(180); 
     }
 
-    public static final class AmpBar {
-        public static final int ROTATIONAL_MOTOR_ID = 0; //TODO fix all this
-        public static final int LPIVOT_MOTOR_ID = 0; //TODO fix this
-        public static final int RPIVOT_MOTOR_ID = 0; //TODO fix this
+    public static final class AmpBar { // TODO FIX ALL PLEASE!!!!!
+        public static final int ROTATIONAL_MOTOR_ID = 0; 
+        public static final int LPIVOT_MOTOR_ID = 0;
+        public static final int RPIVOT_MOTOR_ID = 0; 
+        public static final double IN = Units.degreesToRadians(0); 
+        public static final double OUT = Units.degreesToRadians(180); 
+        public static final double IDLE_SPEED = 0;
+        public static final double DEPLOYED_SPEED = 0.4;
+    
     }
 
 }
