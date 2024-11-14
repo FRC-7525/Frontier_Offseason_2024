@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -25,7 +26,12 @@ public class AmpBar {
         lPivotMotor = new CANSparkMax(Constants.AmpBar.LPIVOT_MOTOR_ID, MotorType.kBrushless); // TODO Check this
         rPivotMotor = new CANSparkMax(Constants.AmpBar.RPIVOT_MOTOR_ID, MotorType.kBrushless);
         controller = new PIDController(0.1, 0, 0); //TODO PID Tune 
+        // SHOULD WE USE A BANG BANG CONTROLLER FOR SPINNERS?
         state = AmpStates.IN;
+        // TODO ask otto about this:
+        //rightMotor.follow(leftMotor, true);
+        //leftMotor.setIdleMode(IdleMode.kCoast);
+		//rightMotor.setIdleMode(IdleMode.kCoast);
 
     }
     public void setState(AmpStates state) { 
