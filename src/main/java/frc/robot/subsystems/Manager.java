@@ -8,7 +8,7 @@ public class Manager {
     private Intake intake;
     private AmpBar  ampBar; 
     private ManagerState robotState; 
-    private XboxController controller; 
+    private XboxController controller = new XboxController(0); 
 
     enum ManagerState{
         IDLE, 

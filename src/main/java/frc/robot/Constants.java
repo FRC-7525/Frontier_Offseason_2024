@@ -12,17 +12,17 @@ public final class Constants {
     public static final class Shooter {
         public static final double SHOOTING_RPS = 80;
         public static final int LEFT_MOTOR_ID = 15;
-        public static final int RIGHT_MOTOR_ID = 15;
+        public static final int RIGHT_MOTOR_ID = 14;
         public static final double SLOW_RPS = 20;
     }
      
 
     public static final class Intake {
-        public static final int PIVOT_MOTOR_ID = 32;
-        public static final int ROTATIONAL_MOTOR_ID = 38; 
+        public static final int PIVOT_MOTOR_ID = 10;
+        public static final int ROTATIONAL_MOTOR_ID = 20; 
         public static final double IDLE_SPEED = 0; 
         public static final double PASSING_SPEED = 1; 
-        public static final double INTAKING_SPEED = -1;
+        public static final double INTAKING_SPEED = -0.5;
         public static final double IN = Units.degreesToRotations(0); 
         public static final double OUT = Units.degreesToRotations(180); 
         public static final double SLOW = -0.25;

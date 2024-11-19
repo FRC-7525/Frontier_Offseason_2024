@@ -25,7 +25,7 @@ public class Intake {
         pivotMotor = new CANSparkMax(Constants.Intake.PIVOT_MOTOR_ID, MotorType.kBrushless); 
         rotationalMotor = new TalonFX(Constants.Intake.ROTATIONAL_MOTOR_ID);
         
-        controller = new PIDController(0.1, 0, 0); //PID Tune 
+        controller = new PIDController(0.2, 0, 0); //PID Tune 
         pivotMotor.getEncoder().setPosition(0);
     }
 
