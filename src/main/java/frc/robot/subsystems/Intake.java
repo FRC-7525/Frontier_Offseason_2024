@@ -9,23 +9,24 @@ import frc.robot.Constants;
 
 public class Intake {
     private IntakeStates state;  
-    private CANSparkMax intake; 
-    private TalonFX wheels; 
+    private CANSparkMax pivotMotor; 
+    private TalonFX rotationalMotor; 
     private PIDController controller;
 
     enum IntakeStates {
         IDLE, 
-        INTAKING
+        INTAKING,
+        SLOW,
+        PASSING
     }
 
     public Intake() {
         state = IntakeStates.IDLE;
-        intake = new CANSparkMax(20, MotorType.kBrushless); 
-        
-        wheels = new TalonFX(32);
+        pivotMotor = new CANSparkMax(Constants.Intake.PIVOT_MOTOR_ID, MotorType.kBrushless); 
+        rotationalMotor = new TalonFX(Constants.Intake.ROTATIONAL_MOTOR_ID);
         
         controller = new PIDController(0.1, 0, 0); //PID Tune 
-        intake.getEncoder().setPosition(0);
+        pivotMotor.getEncoder().setPosition(0);
     }
 
     public void setState(IntakeStates state) {
@@ -36,14 +37,20 @@ public class Intake {
         
         switch (state) {
             case IDLE:  
-                intake.set(controller.calculate(intake.getEncoder().getPosition(), Constants.Intake.in));
-                wheels.set(0); 
+                pivotMotor.set(controller.calculate(pivotMotor.getEncoder().getPosition(), Constants.Intake.IN));
+                rotationalMotor.set(Constants.Intake.IDLE_SPEED); 
                 break; 
-           
+            case PASSING:
+                pivotMotor.set(controller.calculate(pivotMotor.getEncoder().getPosition(), Constants.Intake.IN));
+                rotationalMotor.set(Constants.Intake.PASSING_SPEED);
             case INTAKING:
-                intake.set(controller.calculate(intake.getEncoder().getPosition(), Constants.Intake.out));
-                wheels.set(Constants.Intake.speed);
-                break; 
+                pivotMotor.set(controller.calculate(pivotMotor.getEncoder().getPosition(), Constants.Intake.OUT));
+                rotationalMotor.set(Constants.Intake.INTAKING_SPEED);
+                break;
+            case SLOW:
+                pivotMotor.set(controller.calculate(pivotMotor.getEncoder().getPosition(), Constants.Intake.IN));
+                rotationalMotor.set(Constants.Intake.SLOW);
+                
         }
     }
  }   

@@ -7,7 +7,8 @@ import frc.robot.Constants;
 
 enum ShooterStates {
     IDLE, 
-    SHOOTING
+    SHOOTING,
+    SLOW
 }
 
 public class Shooter {
@@ -15,15 +16,13 @@ public class Shooter {
     private ShooterStates state;  
     private TalonFX leftMotor; 
     private TalonFX rightMotor;
-    private BangBangController motorController;
-    private double speed; 
+    private BangBangController bangBangController;
 
     public Shooter() {
         state = ShooterStates.IDLE;
-        motorController = new BangBangController();
-        leftMotor = new TalonFX(15);
-        rightMotor = new TalonFX(14);
-        speed = Constants.Shooter.speed;
+        bangBangController = new BangBangController();
+        leftMotor = new TalonFX(Constants.Shooter.LEFT_MOTOR_ID);
+        rightMotor = new TalonFX(Constants.Shooter.RIGHT_MOTOR_ID);
     }
 
     public void setState(ShooterStates state) {
@@ -31,13 +30,17 @@ public class Shooter {
     }
 
     public void periodic() {
-        if (state == ShooterStates.IDLE) {
-            leftMotor.set(0);
-            rightMotor.set(0); 
-        } 
-        else if (state == ShooterStates.SHOOTING) {
-            leftMotor.set(motorController.calculate(leftMotor.getVelocity().getValueAsDouble(), speed));
-            rightMotor.set(motorController.calculate(rightMotor.getVelocity().getValueAsDouble(), speed));
-        } 
+        switch (state) {
+            case IDLE:
+                leftMotor.set(0);
+                rightMotor.set(0);
+                break; 
+            case SHOOTING: 
+                leftMotor.set(bangBangController.calculate(leftMotor.getVelocity().getValueAsDouble(), Constants.Shooter.SHOOTING_RPS));
+                rightMotor.set(bangBangController.calculate(rightMotor.getVelocity().getValueAsDouble(), Constants.Shooter.SHOOTING_RPS));
+            case SLOW:
+                leftMotor.set(bangBangController.calculate(leftMotor.getVelocity().getValueAsDouble(), Constants.Shooter.SLOW_RPS));
+                rightMotor.set(bangBangController.calculate(rightMotor.getVelocity().getValueAsDouble(), Constants.Shooter.SLOW_RPS));
+        }
     }
 }

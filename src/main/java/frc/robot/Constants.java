@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.math.util.Units;
 
+
 public final class Constants {
 
     private Constants() {
@@ -9,24 +10,34 @@ public final class Constants {
     }
 
     public static final class Shooter {
-        public static final double speed = 80;
+        public static final double SHOOTING_RPS = 80;
+        public static final int LEFT_MOTOR_ID = 15;
+        public static final int RIGHT_MOTOR_ID = 15;
+        public static final double SLOW_RPS = 20;
     }
      
 
     public static final class Intake {
-        public static final double speed = -1;
-        public static final double in = Units.degreesToRotations(0); 
-        public static final double out = Units.degreesToRotations(180); 
+        public static final int PIVOT_MOTOR_ID = 32;
+        public static final int ROTATIONAL_MOTOR_ID = 38; 
+        public static final double IDLE_SPEED = 0; 
+        public static final double PASSING_SPEED = 1; 
+        public static final double INTAKING_SPEED = -1;
+        public static final double IN = Units.degreesToRotations(0); 
+        public static final double OUT = Units.degreesToRotations(180); 
+        public static final double SLOW = -0.25;
     }
 
     public static final class AmpBar { // TODO FIX ALL PLEASE!!!!!
         public static final int ROTATIONAL_MOTOR_ID = 38; 
         public static final int LPIVOT_MOTOR_ID = 30;
         public static final int RPIVOT_MOTOR_ID = 35; 
-        public static final double IN = Units.degreesToRadians(0); 
-        public static final double OUT = Units.degreesToRadians(-79); 
+        public static final double IN = Units.degreesToRotations(0); 
+        public static final double OUT = Units.degreesToRotations(-79); 
         public static final double IDLE_SPEED = 0;
-        public static final double DEPLOYED_SPEED = 0.4;
+        public static final double FEEDING_SPEED = 0.1;
+        public static final double SHOOTING_SPEED = 0.5;
+        
     
     }
 
