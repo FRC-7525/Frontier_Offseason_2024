@@ -24,7 +24,7 @@ public final class Constants {
         public static final double PASSING_SPEED = 1; 
         public static final double INTAKING_SPEED = -0.5;
         public static final double IN = Units.degreesToRotations(0); 
-        public static final double OUT = Units.degreesToRotations(180); 
+        public static final double OUT = Units.degreesToRotations(-180); 
         public static final double SLOW = -0.25;
     }
 
@@ -33,7 +33,7 @@ public final class Constants {
         public static final int LPIVOT_MOTOR_ID = 30;
         public static final int RPIVOT_MOTOR_ID = 35; 
         public static final double IN = Units.degreesToRotations(0); 
-        public static final double OUT = Units.degreesToRotations(-79); 
+        public static final double OUT = 180; 
         public static final double IDLE_SPEED = 0;
         public static final double FEEDING_SPEED = 0.1;
         public static final double SHOOTING_SPEED = 0.5;
