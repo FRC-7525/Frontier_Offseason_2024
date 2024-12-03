@@ -22,9 +22,9 @@ public final class Constants {
         public static final int ROTATIONAL_MOTOR_ID = 20; 
         public static final double IDLE_SPEED = 0; 
         public static final double PASSING_SPEED = 1; 
-        public static final double INTAKING_SPEED = -0.5;
-        public static final double IN = Units.degreesToRotations(0); 
-        public static final double OUT = Units.degreesToRotations(-180); 
+        public static final double INTAKING_SPEED = 0.29;
+        public static final double IN = 0;
+        public static final double OUT = -37; 
         public static final double SLOW = -0.25;
     }
 

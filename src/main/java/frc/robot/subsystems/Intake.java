@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class Intake {
@@ -24,9 +25,9 @@ public class Intake {
         state = IntakeStates.IDLE;
         pivotMotor = new CANSparkMax(Constants.Intake.PIVOT_MOTOR_ID, MotorType.kBrushless); 
         rotationalMotor = new TalonFX(Constants.Intake.ROTATIONAL_MOTOR_ID);
-        
-        controller = new PIDController(0.2, 0, 0); //PID Tune 
-        pivotMotor.getEncoder().setPosition(0);
+        controller = new PIDController(0.17, 0, 0.006); //PID Tune 
+        pivotMotor.getEncoder().setPositionConversionFactor(1);
+        pivotMotor.getEncoder().setPosition(0); 
     }
 
     public void setState(IntakeStates state) {
@@ -34,7 +35,9 @@ public class Intake {
     }
 
     public void periodic() {
-        
+        System.out.println(pivotMotor.getEncoder().getPosition());
+        SmartDashboard.putData(controller);
+
         switch (state) {
             case IDLE:  
                 pivotMotor.set(controller.calculate(pivotMotor.getEncoder().getPosition(), Constants.Intake.IN));

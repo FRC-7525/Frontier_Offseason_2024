@@ -65,7 +65,6 @@ public class Manager {
                 }
                 break; 
             case FEEDING:
-                // 
                 ampBar.setState(AmpStates.FEEDING);
                 intake.setState(IntakeStates.SLOW);
                 shooter.setState(ShooterStates.SLOW);

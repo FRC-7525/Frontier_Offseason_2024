@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.subsystems.Manager;
 
@@ -19,10 +22,12 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
   Manager manager;
+  //private CANSparkMax pivotMotor;
 
   @Override
   public void robotInit() {
     manager = new Manager();
+    //pivotMotor = new CANSparkMax(Constants.Intake.PIVOT_MOTOR_ID, MotorType.kBrushless);
   }
 
   @Override
@@ -46,7 +51,9 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    //System.out.println(pivotMotor.getEncoder().getPosition()); 
+  }
 
   @Override
   public void testInit() {}
