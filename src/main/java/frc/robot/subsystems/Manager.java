@@ -22,7 +22,8 @@ public class Manager {
     public Manager() {
         intake  = new Intake(); 
         shooter = new Shooter();
-        ampBar = new AmpBar(); 
+        ampBar = new AmpBar();
+        drive = new Drive(); 
 
         robotState = ManagerState.IDLE; 
     }
@@ -31,6 +32,7 @@ public class Manager {
         ampBar.periodic();
         shooter.periodic();
         intake.periodic();
+        drive.periodic(controller.getLeftX().getAsDouble(), controller.getLeftY().getAsDouble(), controller.getRightX().getAsDouble());
         
         switch (robotState) {
             case IDLE:

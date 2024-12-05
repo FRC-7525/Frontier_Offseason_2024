@@ -41,4 +41,8 @@ public final class Constants {
     
     }
 
+    public static final class Drive {
+        public static final double MAXIMUM_SPEED = Units.feetToMeters(4.5);
+    }
+
 }
