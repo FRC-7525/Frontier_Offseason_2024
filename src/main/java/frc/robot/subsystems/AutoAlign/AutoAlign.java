@@ -6,18 +6,19 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import frc.robot.subsystems.Drive;
+import swervelib.SwerveDrive;
 
 public class AutoAlign extends Subsystem<AutoAlignStates> {
     private PIDController translationPIDController;
     private PIDController rotationPIDController; 
 
-    public AutoAlign() {
+    public AutoAlign(SwerveDrive swerveDrive) {
         super("AutoAlign", AutoAlignStates.IDLE);
 
         translationPIDController = new PIDController(0.7, 0, 0.1);
         rotationPIDController = new PIDController(0.7, 0, 0.1);
 
-        translationPIDController.setTolerance(1);
+        translationPIDController.setTolerance(0.1);
         rotationPIDController.setTolerance(3);
     }
 
