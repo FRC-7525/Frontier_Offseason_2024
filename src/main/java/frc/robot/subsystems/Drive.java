@@ -20,7 +20,7 @@ import frc.robot.subsystems.AutoAlign.AutoAlignStates;
 public class Drive extends Subsystem<AutoAlignStates> {
     private double MAXIMUM_SPEED;
     private File swerveJsonDirectory;
-    public static SwerveDrive swerveDrive;
+    private SwerveDrive swerveDrive;
     private AutoAlign autoAligner;
     private XboxController controller;
     public Drive() {

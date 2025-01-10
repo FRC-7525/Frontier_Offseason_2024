@@ -5,7 +5,6 @@ import org.team7525.subsystem.Subsystem;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import frc.robot.subsystems.Drive;
 import swervelib.SwerveDrive;
 
 public class AutoAlign extends Subsystem<AutoAlignStates> {
@@ -26,9 +25,9 @@ public class AutoAlign extends Subsystem<AutoAlignStates> {
     }
 
     public void driveToPosition(Pose2d pose) {
-        double x = translationPIDController.calculate(Drive.swerveDrive.getPose().getX(), pose.getX());
-        double y = translationPIDController.calculate(Drive.swerveDrive.getPose().getY(), pose.getY());
-        double angle = rotationPIDController.calculate(Drive.swerveDrive.getPose().getRotation().getDegrees(), pose.getRotation().getDegrees());
+        double x = translationPIDController.calculate(swerveDrive.getPose().getX(), pose.getX());
+        double y = translationPIDController.calculate(swerveDrive.getPose().getY(), pose.getY());
+        double angle = rotationPIDController.calculate(swerveDrive.getPose().getRotation().getDegrees(), pose.getRotation().getDegrees());
 
         swerveDrive.drive(new Translation2d(x, y), angle, true, false);
     }
