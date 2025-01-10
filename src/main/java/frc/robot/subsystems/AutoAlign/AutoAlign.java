@@ -10,10 +10,13 @@ import swervelib.SwerveDrive;
 
 public class AutoAlign extends Subsystem<AutoAlignStates> {
     private PIDController translationPIDController;
-    private PIDController rotationPIDController; 
+    private PIDController rotationPIDController;
+    private SwerveDrive swerveDrive; 
 
     public AutoAlign(SwerveDrive swerveDrive) {
         super("AutoAlign", AutoAlignStates.IDLE);
+
+        this.swerveDrive = swerveDrive;
 
         translationPIDController = new PIDController(0.7, 0, 0.1);
         rotationPIDController = new PIDController(0.7, 0, 0.1);
@@ -27,7 +30,7 @@ public class AutoAlign extends Subsystem<AutoAlignStates> {
         double y = translationPIDController.calculate(Drive.swerveDrive.getPose().getY(), pose.getY());
         double angle = rotationPIDController.calculate(Drive.swerveDrive.getPose().getRotation().getDegrees(), pose.getRotation().getDegrees());
 
-        Drive.swerveDrive.drive(new Translation2d(x, y), angle, true, false);
+        swerveDrive.drive(new Translation2d(x, y), angle, true, false);
     }
 
     @Override
