@@ -38,14 +38,13 @@ public class Drive extends Subsystem<AutoAlignStates> {
     
     @Override
     public void runState() {
+        autoAligner.periodic();
         if (autoAligner.getState() == AutoAlignStates.IDLE) {
             swerveDrive.drive(new Translation2d(Constants.CONTROLLER.getLeftX() * MAXIMUM_SPEED,
                 Constants.CONTROLLER.getLeftY() * MAXIMUM_SPEED),
                 Constants.CONTROLLER.getRightX() * MAXIMUM_SPEED, 
                     true, false);
-        } else {
-            autoAligner.runState();
-        }
+        } 
         
 
     }
