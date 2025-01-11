@@ -13,7 +13,7 @@ public class AutoAlign extends Subsystem<AutoAlignStates> {
     private PIDController translationPIDController;
     private PIDController rotationPIDController;
     private SwerveDrive swerveDrive; 
-    
+     
 
     public AutoAlign(SwerveDrive swerveDrive) {
         super("AutoAlign", AutoAlignStates.IDLE);
