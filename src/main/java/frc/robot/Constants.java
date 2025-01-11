@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.XboxController;
 
 
 public final class Constants {
@@ -44,5 +45,9 @@ public final class Constants {
     public static final class Drive {
         public static final double MAXIMUM_SPEED = Units.feetToMeters(4.5);
     }
+
+    public static final XboxController CONTROLLER = new XboxController(0);
+
+    
 
 }
