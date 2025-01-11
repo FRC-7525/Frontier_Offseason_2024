@@ -5,12 +5,15 @@ import org.team7525.subsystem.Subsystem;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import swervelib.SwerveDrive;
 
 public class AutoAlign extends Subsystem<AutoAlignStates> {
     private PIDController translationPIDController;
     private PIDController rotationPIDController;
     private SwerveDrive swerveDrive; 
+    
 
     public AutoAlign(SwerveDrive swerveDrive) {
         super("AutoAlign", AutoAlignStates.IDLE);
@@ -22,6 +25,10 @@ public class AutoAlign extends Subsystem<AutoAlignStates> {
 
         translationPIDController.setTolerance(0.1);
         rotationPIDController.setTolerance(3);
+        addTrigger(AutoAlignStates.IDLE, AutoAlignStates.REEF, Constants.CONTROLLER::getAButton);
+        addTrigger(AutoAlignStates.IDLE, AutoAlignStates.CORAL, Constants.CONTROLLER::getBButton);
+        addTrigger(AutoAlignStates.REEF, AutoAlignStates.IDLE, Constants.CONTROLLER::getAButton);
+        addTrigger(AutoAlignStates.CORAL, AutoAlignStates.IDLE, Constants.CONTROLLER::getBButton);
     }
 
     public void driveToPosition(Pose2d pose) {
@@ -39,6 +46,7 @@ public class AutoAlign extends Subsystem<AutoAlignStates> {
         } else {
             driveToPosition(getState().getTargetPose());
         }
+        SmartDashboard.putString("autostates", getState().getStateString());
     }
     
 }

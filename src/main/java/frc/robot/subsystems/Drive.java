@@ -6,7 +6,6 @@ import java.io.IOException;
 import org.team7525.subsystem.Subsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.XboxController;
 import swervelib.parser.SwerveParser;
 import swervelib.SwerveDrive;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -22,7 +21,6 @@ public class Drive extends Subsystem<AutoAlignStates> {
     private File swerveJsonDirectory;
     private SwerveDrive swerveDrive;
     private AutoAlign autoAligner;
-    private XboxController controller;
     public Drive() {
         super("Drive", AutoAlignStates.IDLE);
         MAXIMUM_SPEED = Constants.Drive.MAXIMUM_SPEED;
@@ -35,25 +33,18 @@ public class Drive extends Subsystem<AutoAlignStates> {
         }
         SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
 
-        autoAligner = new AutoAlign(swerveDrive);
-        controller = new XboxController(0);
-
-        addTrigger(AutoAlignStates.IDLE, AutoAlignStates.REEF, controller::getAButton);
-        addTrigger(AutoAlignStates.IDLE, AutoAlignStates.CORAL, controller::getBButton);
-        addTrigger(AutoAlignStates.REEF, AutoAlignStates.IDLE, controller::getAButton);
-        addTrigger(AutoAlignStates.CORAL, AutoAlignStates.IDLE, controller::getBButton);
+        autoAligner = new AutoAlign(swerveDrive);       
     }
     
     @Override
     public void runState() {
+        autoAligner.periodic();
         if (autoAligner.getState() == AutoAlignStates.IDLE) {
-            swerveDrive.drive(new Translation2d(controller.getLeftX() * MAXIMUM_SPEED,
-                controller.getLeftY() * MAXIMUM_SPEED),
-                controller.getRightX() * MAXIMUM_SPEED, 
+            swerveDrive.drive(new Translation2d(Constants.CONTROLLER.getLeftX() * MAXIMUM_SPEED,
+                Constants.CONTROLLER.getLeftY() * MAXIMUM_SPEED),
+                Constants.CONTROLLER.getRightX() * MAXIMUM_SPEED, 
                     true, false);
-        } else {
-            autoAligner.runState();
-        }
+        } 
         
 
     }
